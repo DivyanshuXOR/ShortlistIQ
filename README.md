@@ -59,7 +59,13 @@ resumeShortlister/
 ├── pyproject.toml            # Project dependencies and packaging configuration
 ├── README.md                 # Project documentation
 ├── resumes/                  # Input directory for candidate PDF resumes
-│   └── Divyanshu's_RESUME.pdf
+│   ├── Divyanshu's_RESUME.pdf
+│   ├── sayan_resume.pdf
+│   ├── Sydney-Resume-Template-Modern.pdf
+│   └── Upesh_Sahu_CV.pdf.pdf
+├── screenshots/              # Terminal execution and evaluation result screenshots
+│   ├── Screenshot 2026-10-14 202734.png
+│   └── Screenshot 2026-10-14 202800.png
 ├── ui.py                     # Rich CLI components, scorecards, tables, and banners
 ├── utils.py                  # PDF parser, Groq API client, and Pydantic schemas
 └── uv.lock                   # Locked dependency graph
@@ -136,46 +142,15 @@ python main.py
 
 ## 7. Screenshots / Output
 
-### Terminal Execution Output
+### Terminal Execution & AI Processing Pipeline
+*System initialization, environment validation, candidate PDF discovery, text extraction, and Groq LPU inference stats:*
 
-```text
-    ╭─────────────────────────────────────────────╮
-    │         AI Resume Shortlister               │
-    │     Powered by Groq ⚡ Qwen 3.8            │
-    ╰─────────────────────────────────────────────╯
+![ShortlistIQ CLI Execution](screenshots/Screenshot%202026-10-14%20202734.png)
 
-Setting up environment...
-Environment setup complete!
+### Candidate Scorecards & Ranked Evaluation Results
+*Candidate metric overview cards, multi-dimensional scoring breakdown (Technical Skills, Experience, Industry Relevance, Education, Overall Fit), and final shortlist ranking recommendations:*
 
-Loading guidance prompt and job description...
-Templates loaded successfully!
-
-Scanning for resume PDFs...
-Found 1 resume files:
-        Divyanshu's_RESUME.pdf
-
-Processing 1 resumes with AI... Complete!
-
-┌─────── Total Candidates ────────┐ ┌─ Average Score ─┐ ┌─ 🏆 Top Candidate ─┐
-│ 1                               │ │ 18.0/50         │ │ Divyanshu Soni     │
-└─────────────────────────────────┘ └─────────────────┘ │ 18/50              │
-                                                        └────────────────────┘
-┌─ Strong Candidates (35+ score) ─┐                                           
-│ 0                               │                                           
-└─────────────────────────────────┘                                           
-
-                         🏆 Resume Evaluation Results                          
-┌────┬──────────────────┬────────┬────────┬────────┬───────┬────────┬─────────┐
-│    │                  │ Techn… │        │ Indus… │       │ Overa… │  Total  │
-│ R… │ Candidate        │ Skills │ Exper… │ Relev… │ Educ… │  Fit   │  Score  │
-├────┼──────────────────┼────────┼────────┼────────┼───────┼────────┼─────────┤
-│ 🥇 │ Divyanshu Soni   │  4/10  │  2/10  │  3/10  │ 6/10  │  3/10  │  18/50  │
-└────┴──────────────────┴────────┴────────┴────────┴───────┴────────┴─────────┘
-
-Total Candidates Evaluated: 1
-Top Recommendation: None - Candidate does not meet minimum experience requirements.
-Ready for Interview: None
-```
+![ShortlistIQ Evaluation Results](screenshots/Screenshot%202026-10-14%20202800.png)
 
 ---
 

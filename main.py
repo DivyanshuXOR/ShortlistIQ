@@ -1,8 +1,4 @@
 #!/usr/bin/env python3
-"""
-AI Resume Shortlister
-A tool to evaluate and rank resumes against job descriptions using OpenAI's GPT-5.
-"""
 
 import sys
 import io
