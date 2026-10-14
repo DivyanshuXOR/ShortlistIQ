@@ -59,7 +59,13 @@ resumeShortlister/
 ├── pyproject.toml            # Project dependencies and packaging configuration
 ├── README.md                 # Project documentation
 ├── resumes/                  # Input directory for candidate PDF resumes
-│   └── Divyanshu's_RESUME.pdf
+│   ├── Divyanshu's_RESUME.pdf
+│   ├── sayan_resume.pdf
+│   ├── Sydney-Resume-Template-Modern.pdf
+│   └── Upesh_Sahu_CV.pdf.pdf
+├── screenshots/              # Terminal execution and evaluation result screenshots
+│   ├── Screenshot 2026-10-14 202734.png
+│   └── Screenshot 2026-10-14 202800.png
 ├── ui.py                     # Rich CLI components, scorecards, tables, and banners
 ├── utils.py                  # PDF parser, Groq API client, and Pydantic schemas
 └── uv.lock                   # Locked dependency graph
@@ -136,7 +142,44 @@ python main.py
 
 ## 7. Screenshots / Output
 
+### 7.1 Pipeline Execution & AI Inference Workflow
+The screenshot below illustrates the automated end-to-end execution workflow executed via `main.py`, demonstrating environment initialization, document parsing, and ultra-fast inference through the Groq Cloud LPU engine:
 
+![ShortlistIQ CLI Execution](screenshots/Screenshot%202026-10-14%20202734.png)
+
+#### Detailed Workflow Description:
+1. **Environment Setup & Validation:** Verifies the presence of the `.env.local` configuration file and authenticates the Groq API credentials before initiating batch operations.
+2. **Template Loading:** Dynamically ingests the hiring criteria from [job_description.md](job_description.md) and the multi-dimensional scoring rubric defined in [guidance_prompt.md](guidance_prompt.md).
+3. **Automated Resume Ingestion:** PyMuPDF scans the `resumes/` folder, detects all candidate PDF documents (e.g., `Divyanshu's_RESUME.pdf`, `sayan_resume.pdf`, `Sydney-Resume-Template-Modern.pdf`, `Upesh_Sahu_CV.pdf.pdf`), and extracts clean text strings for tokenization.
+4. **Batch AI Evaluation:** Combines prompt directives, job specs, and candidate resumes into a structured prompt dispatched to Groq's `qwen/qwen3.8-27b` model with strict JSON schema constraints.
+5. **Inference Telemetry:** Transparently logs execution performance metrics—displaying token consumption (e.g., 6,175 prompt tokens, 2,227 completion tokens, 8,402 total tokens) with near-instantaneous response times.
+
+---
+
+### 7.2 Candidate Scorecards & Ranked Evaluation Results
+Once the AI model completes the evaluation, the application formats the output into an intuitive, color-coded terminal dashboard powered by the `Rich` TUI library:
+
+![ShortlistIQ Evaluation Results](screenshots/Screenshot%202026-10-14%20202800.png)
+
+#### Detailed Results Breakdown:
+1. **Executive Metric Cards:**
+   - **Total Candidates:** Total volume of candidate profiles evaluated in the current run (4 candidates).
+   - **Average Score:** Cohort-wide baseline score (19.0 / 50), offering immediate insight into overall applicant pool alignment.
+   - **Top Candidate:** Highlights the highest-scoring applicant (`Sayan Karmakar` with 34/50) for immediate recruitment consideration.
+   - **Strong Candidates (35+ score):** Indicates applicants who exceeded the stringent threshold for priority interviews.
+
+2. **Multi-Dimensional Comparison Matrix:**
+   - **Technical Skills (1-10):** Measures direct alignment with required programming languages, frameworks, system design, and AI/ML proficiencies.
+   - **Experience (1-10):** Gauges the depth and tenure of relevant hands-on engineering experience and measurable project impact.
+   - **Industry Relevance (1-10):** Assesses past work in equivalent domains, enterprise scale, and modern cloud/ML infrastructure.
+   - **Education (1-10):** Evaluates academic degree level, specialization in Computer Science or related STEM disciplines.
+   - **Overall Fit (1-10):** Synthesizes soft skills, collaborative leadership, and cultural alignment.
+   - **Total Score (Out of 50):** The composite sum used to rank applicants with Olympic-style podium indicators (🥇 Gold, 🥈 Silver, 🥉 Bronze).
+
+3. **Actionable Hiring Verdict:**
+   - Summarizes the top recommendation and generates an automated `Ready for Interview` list, giving recruitment teams an immediate, bias-free shortlisting decision.
+
+---
 
 ## 8. DSA Concepts Used
 
