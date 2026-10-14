@@ -59,13 +59,7 @@ resumeShortlister/
 ├── pyproject.toml            # Project dependencies and packaging configuration
 ├── README.md                 # Project documentation
 ├── resumes/                  # Input directory for candidate PDF resumes
-│   ├── Divyanshu's_RESUME.pdf
-│   ├── sayan_resume.pdf
-│   ├── Sydney-Resume-Template-Modern.pdf
-│   └── Upesh_Sahu_CV.pdf.pdf
-├── screenshots/              # Terminal execution and evaluation result screenshots
-│   ├── Screenshot 2026-10-14 202734.png
-│   └── Screenshot 2026-10-14 202800.png
+│   └── Divyanshu's_RESUME.pdf
 ├── ui.py                     # Rich CLI components, scorecards, tables, and banners
 ├── utils.py                  # PDF parser, Groq API client, and Pydantic schemas
 └── uv.lock                   # Locked dependency graph
@@ -142,17 +136,7 @@ python main.py
 
 ## 7. Screenshots / Output
 
-### Terminal Execution & AI Processing Pipeline
-*System initialization, environment validation, candidate PDF discovery, text extraction, and Groq LPU inference stats:*
 
-![ShortlistIQ CLI Execution](screenshots/Screenshot%202026-10-14%20202734.png)
-
-### Candidate Scorecards & Ranked Evaluation Results
-*Candidate metric overview cards, multi-dimensional scoring breakdown (Technical Skills, Experience, Industry Relevance, Education, Overall Fit), and final shortlist ranking recommendations:*
-
-![ShortlistIQ Evaluation Results](screenshots/Screenshot%202026-10-14%20202800.png)
-
----
 
 ## 8. DSA Concepts Used
 
