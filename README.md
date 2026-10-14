@@ -3,10 +3,13 @@
 ## 1. Project Overview
 - **Project Title:** ShortlistIQ: Automated Resume Screening & Candidate Shortlisting System
 - **Team Members:** 
-  - Divyanshu Soni (Roll Number: `<Your Roll Number>`)
-  - *(Add additional team member names and roll numbers here)*
+  - Divyanshu Soni (6606664)
+  - Upesh Sahu (6606648)
+  - Anmol Tamboli (6605652)
+  - Samarth Soni (6606884)
+  - Anshu Pandey (6605972)
 - **Technology Stack:** Python 3.10+, Groq Cloud API (High-Performance LLM Inference), PyMuPDF (PDF Extraction), Pydantic v2 (Data Validation), Rich (Terminal UI), python-dotenv, UV Package Manager
-- **Project Guide/Mentor:** `<Mentor / Guide Name>`
+- **Project Guide/Mentor:** Aarshi Gupta Ma'am
 - **Project Objective:** To automate and streamline candidate evaluation by semantically parsing resumes against specific job descriptions using Large Language Models (LLMs), producing objective scores, detailed reasoning, and ranked shortlists without recruiter bias or manual screening fatigue.
 
 ---
