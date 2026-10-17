@@ -2,6 +2,7 @@ import json
 import os
 from pathlib import Path
 from typing import List, Dict, Any
+import sys
 from dotenv import load_dotenv
 from groq import Groq
 from pydantic import BaseModel
@@ -56,7 +57,12 @@ def extract_text_from_pdf(pdf_path: str) -> str:
 
 
 def load_text_file(file_path: str) -> str:
-    """Load text content from a file."""
+    """Load text content from a file, with PyInstaller bundle fallback."""
+    p = Path(file_path)
+    if not p.exists() and hasattr(sys, "_MEIPASS"):
+        bundled = Path(sys._MEIPASS) / file_path
+        if bundled.exists():
+            return bundled.read_text(encoding="utf-8")
     with open(file_path, "r", encoding="utf-8") as file:
         return file.read()
 

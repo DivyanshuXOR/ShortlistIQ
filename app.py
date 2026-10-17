@@ -503,6 +503,11 @@ class ShortlistIQApp:
 
     def _refresh_resumes(self):
         d = Path("resumes")
+        if not d.exists():
+            try:
+                d.mkdir(parents=True, exist_ok=True)
+            except Exception:
+                pass
         self.resume_files = sorted(d.glob("*.pdf")) if d.exists() else []
 
     def _check_api(self):
@@ -791,6 +796,8 @@ class ShortlistIQApp:
         jd = Path("job_description.md")
         if jd.exists():
             self.jd_txt.insert("1.0", jd.read_text(encoding="utf-8"))
+        elif hasattr(sys, "_MEIPASS") and (Path(sys._MEIPASS) / "job_description.md").exists():
+            self.jd_txt.insert("1.0", (Path(sys._MEIPASS) / "job_description.md").read_text(encoding="utf-8"))
 
         # Footer stats
         self.jd_stats = tk.Label(pad, text="", font=F_SM, bg=C.BG, fg=C.TEXT3)
@@ -833,13 +840,13 @@ class ShortlistIQApp:
                  bg=C.BG, fg=C.TEXT).pack(anchor="w", pady=(0, 12))
 
         api_ok = self._check_api()
-        jd_ok = Path("job_description.md").exists()
+        jd_ok = Path("job_description.md").exists() or (hasattr(sys, "_MEIPASS") and (Path(sys._MEIPASS) / "job_description.md").exists())
         res_ok = len(self.resume_files) > 0
-        gp_ok = Path("guidance_prompt.md").exists()
+        gp_ok = Path("guidance_prompt.md").exists() or (hasattr(sys, "_MEIPASS") and (Path(sys._MEIPASS) / "guidance_prompt.md").exists())
 
         checks = [
-            (api_ok, "Groq API Key", "GROQ_API_KEY in .env.local", "resumes"),
-            (res_ok, f"Resumes ({len(self.resume_files)} files)", "PDF files detected", "resumes"),
+            (api_ok, "Groq API Key", "GROQ_API_KEY in .env.local or env", "resumes"),
+            (res_ok, f"Resumes ({len(self.resume_files)} files)", "PDF files detected in resumes/", "resumes"),
             (jd_ok, "Job Description", "job_description.md present", "jobdesc"),
             (gp_ok, "Guidance Prompt", "guidance_prompt.md present", None),
         ]

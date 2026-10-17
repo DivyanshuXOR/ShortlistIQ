@@ -14,3 +14,4 @@ wheels/
 resumes/*
 !resumes/.gitkeep
 .DS_Store
+*.spec
