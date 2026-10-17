@@ -19,12 +19,24 @@ st.set_page_config(
 st.title("📄 ShortlistIQ — AI Resume Shortlisting System")
 st.caption("Automated semantic screening powered by Groq LLM inference")
 
+# Check Streamlit secrets first, then environment variables
+default_api_key = ""
+try:
+    if "GROQ_API_KEY" in st.secrets:
+        default_api_key = st.secrets["GROQ_API_KEY"]
+        os.environ["GROQ_API_KEY"] = default_api_key
+except Exception:
+    pass
+
+if not default_api_key and os.getenv("GROQ_API_KEY"):
+    default_api_key = os.getenv("GROQ_API_KEY")
+
 # Sidebar for configuration & API key
 with st.sidebar:
     st.header("⚙️ Configuration")
     api_key = st.text_input(
         "Groq API Key",
-        value=os.getenv("GROQ_API_KEY", ""),
+        value=default_api_key,
         type="password",
         help="Enter your Groq Cloud API Key (or set it in Streamlit Secrets)",
     )
